@@ -106,3 +106,42 @@
     total-rewards: uint
   }
 )
+
+(define-map leaderboard 
+  { player: principal }
+  { 
+    score: uint, 
+    games-played: uint,
+    total-rewards: uint,
+    avatar-id: uint,
+    rank: uint,
+    achievements: (list 20 (string-ascii 50))
+  }
+)
+
+;; Validation Functions
+(define-private (is-valid-name (name (string-ascii 50)))
+  (and 
+    (>= (len name) u1)
+    (<= (len name) u50)
+    (not (is-eq name ""))
+  )
+)
+
+(define-private (is-valid-description (description (string-ascii 200)))
+  (and 
+    (>= (len description) u1)
+    (<= (len description) u200)
+    (not (is-eq description ""))
+  )
+)
+
+(define-private (is-valid-rarity (rarity (string-ascii 20)))
+  (or 
+    (is-eq rarity "common")
+    (is-eq rarity "uncommon")
+    (is-eq rarity "rare")
+    (is-eq rarity "epic")
+    (is-eq rarity "legendary")
+  )
+)
