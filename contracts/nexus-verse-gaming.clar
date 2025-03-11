@@ -68,3 +68,41 @@
 ;; NFT Definitions
 (define-non-fungible-token nexus-asset uint)
 (define-non-fungible-token nexus-avatar uint)
+
+;; Data Maps
+(define-map nexus-asset-metadata 
+  { token-id: uint }
+  { 
+    name: (string-ascii 50),
+    description: (string-ascii 200),
+    rarity: (string-ascii 20),
+    power-level: uint,
+    world-id: uint,
+    attributes: (list 10 (string-ascii 20)),
+    experience: uint,
+    level: uint
+  }
+)
+
+(define-map avatar-metadata
+  { avatar-id: uint }
+  {
+    name: (string-ascii 50),
+    level: uint,
+    experience: uint,
+    achievements: (list 20 (string-ascii 50)),
+    equipped-assets: (list 5 uint),
+    world-access: (list 10 uint)
+  }
+)
+
+(define-map game-worlds
+  { world-id: uint }
+  {
+    name: (string-ascii 50),
+    description: (string-ascii 200),
+    entry-requirement: uint,
+    active-players: uint,
+    total-rewards: uint
+  }
+)
